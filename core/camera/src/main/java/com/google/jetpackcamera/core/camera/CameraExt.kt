@@ -122,6 +122,7 @@ fun CameraInfo.filterSupportedFixedFrameRates(desired: Set<Int>): Set<Int> {
 val CameraInfo.supportedImageFormats: Set<ImageOutputFormat>
     @OptIn(ExperimentalImageCaptureOutputFormat::class)
     get() = ImageCapture.getImageCaptureCapabilities(this).supportedOutputFormats
+        .asSequence()
         .mapNotNull(Int::toAppImageFormat)
         .toSet()
 
